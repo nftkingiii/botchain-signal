@@ -117,7 +117,7 @@ export default function Home() {
 
   const exportCsv = () => {
     const records = rows.map(row => row.kind === 'probe' ? [row.time, 'success', row.sample.block.number, row.sample.block.ageSeconds, row.sample.block.latencyMs, row.sample.source, row.sample.block.hash] : row.kind === 'failed' ? [row.time, 'failed', '', '', '', row.failure.source, row.failure.error] : [row.time, 'anchor', row.anchor.blockNumber, '', '', row.anchor.account, row.anchor.hash])
-    const csv = [['observed_at', 'kind', 'block', 'block_age_seconds', 'response_ms', 'source', 'evidence'].concat(records).map(row => row.map(cell => `"${String(cell).replaceAll('"', '""')}"`).join(',')).join('\r\n')
+    const csv = [['observed_at', 'kind', 'block', 'block_age_seconds', 'response_ms', 'source', 'evidence'], ...records].map(row => row.map(cell => `"${String(cell).replaceAll('"', '""')}"`).join(',')).join('\r\n')
     const url = URL.createObjectURL(new Blob([csv], { type: 'text/csv;charset=utf-8' })); const link = document.createElement('a'); link.href = url; link.download = `signal-observations-${BOT_CHAIN.id}.csv`; link.click(); URL.revokeObjectURL(url)
   }
 

@@ -24,7 +24,7 @@ export async function GET() {
   const observedAt = new Date().toISOString()
   try {
     const chain = await rpc<string>('eth_chainId', [])
-    if (Number(BigInt(chain.result)) !== BOT_CHAIN.chainId) {
+    if (Number(BigInt(chain.result)) !== BOT_CHAIN.id) {
       return NextResponse.json({ ok: false, observedAt, source: BOT_CHAIN.rpcUrl, error: `Unexpected chain ID ${chain.result}` }, { status: 502 })
     }
     const block = await rpc<{ number: string; hash: string; timestamp: string }>('eth_getBlockByNumber', ['latest', false])
