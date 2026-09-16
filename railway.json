@@ -1,1 +1,1 @@
-{"$schema":"https://railway.com/railway.schema.json","build":{"buildCommand":"npm --prefix web ci && npm --prefix web run build"},"deploy":{"startCommand":"npm --prefix web run start","healthcheckPath":"/api/healthz","healthcheckTimeout":120}}
+{"$schema":"https://railway.com/railway.schema.json","build":{"buildCommand":"npm --prefix web run build"},"deploy":{"startCommand":"npm --prefix web run start","healthcheckPath":"/api/healthz","healthcheckTimeout":120}}
